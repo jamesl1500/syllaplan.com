@@ -1,26 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-cream: #f7f3ec;
+  --color-cream-dark: #ece4d4;
+  --color-clay-50: #fdf1ea;
+  --color-clay-100: #f9dfcd;
+  --color-clay-200: #f2c3a3;
+  --color-clay-300: #e9a377;
+  --color-clay-400: #e08957;
+  --color-clay-500: #d97757;
+  --color-clay-600: #bf5f3f;
+  --color-clay-700: #9c4a30;
+  --color-clay-800: #7a3a27;
+  --color-clay-900: #5c2c1e;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-cream: var(--color-cream);
+  --color-cream-dark: var(--color-cream-dark);
+  --color-clay-50: var(--color-clay-50);
+  --color-clay-100: var(--color-clay-100);
+  --color-clay-200: var(--color-clay-200);
+  --color-clay-300: var(--color-clay-300);
+  --color-clay-400: var(--color-clay-400);
+  --color-clay-500: var(--color-clay-500);
+  --color-clay-600: var(--color-clay-600);
+  --color-clay-700: var(--color-clay-700);
+  --color-clay-800: var(--color-clay-800);
+  --color-clay-900: var(--color-clay-900);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: -0.01em;
 }
