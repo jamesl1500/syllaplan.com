@@ -3,6 +3,50 @@ import { redirect } from "next/navigation";
 import { CalendarDays, UploadCloud, ListChecks, ArrowRight } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { Button } from "@/components/ui/Button";
+import { MarketingHeader } from "@/components/marketing/MarketingHeader";
+import { Footer } from "@/components/marketing/Footer";
+import { siteConfig } from "@/lib/site-config";
+
+const FAQS = [
+  {
+    question: "Is Syllaplan free to use?",
+    answer: "Yes, Syllaplan is free to use.",
+  },
+  {
+    question: "What file formats can I upload?",
+    answer: "PDF syllabi. Most schools export syllabi as PDF, so that's the format Claude reads directly.",
+  },
+  {
+    question: "Is my syllabus data private?",
+    answer:
+      "Your uploaded PDF is sent to Claude to extract the schedule, then stored in your private account — it's never shared with other students. You can delete your account and everything tied to it at any time from account settings.",
+  },
+  {
+    question: "Does it work for any class or school?",
+    answer:
+      "Yes. Syllaplan reads the schedule, exam dates, and assignments directly from whatever syllabus you upload, so it isn't tied to a specific school or course format.",
+  },
+  {
+    question: "What if Claude gets a date wrong?",
+    answer:
+      "Nothing saves automatically. After Claude extracts your schedule, you review and can edit every date, time, and assignment before confirming it to your calendar.",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: siteConfig.name,
+  description: siteConfig.description,
+  url: siteConfig.url,
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+};
 
 export default async function Home() {
   const supabase = await createClient();
@@ -16,20 +60,11 @@ export default async function Home() {
 
   return (
     <div className="flex flex-1 flex-col bg-cream">
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
-        <div className="flex items-center gap-2 text-stone-900">
-          <CalendarDays className="h-5 w-5 text-clay-500" />
-          <span className="font-serif text-lg font-medium">Syllaplan</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Link href="/login" className="rounded-full px-4 py-2 text-sm font-medium text-stone-700 hover:text-stone-900">
-            Log in
-          </Link>
-          <Link href="/signup">
-            <Button className="text-sm">Get started</Button>
-          </Link>
-        </div>
-      </header>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <MarketingHeader />
 
       <main className="flex flex-1 flex-col items-center px-6">
         <section className="flex max-w-3xl flex-col items-center gap-7 py-20 text-center sm:py-28">
@@ -85,7 +120,25 @@ export default async function Home() {
             Get a live calendar and task list for every class, kept in one place automatically.
           </Feature>
         </section>
+
+        <section className="w-full max-w-3xl pb-24">
+          <h2 className="mb-8 text-center text-3xl font-medium tracking-tight text-stone-900">
+            Frequently asked questions
+          </h2>
+          <div className="flex flex-col divide-y divide-stone-200 rounded-2xl border border-stone-200 bg-white">
+            {FAQS.map((faq) => (
+              <details key={faq.question} className="group p-6 open:pb-6">
+                <summary className="cursor-pointer list-none font-medium text-stone-900 marker:content-none">
+                  {faq.question}
+                </summary>
+                <p className="mt-2 text-sm leading-relaxed text-stone-600">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
       </main>
+
+      <Footer />
     </div>
   );
 }
