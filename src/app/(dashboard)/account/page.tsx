@@ -1,21 +1,26 @@
 import { verifySession, getProfile } from "@/lib/dal";
+import { siteConfig } from "@/lib/site-config";
 import { ProfileForm } from "@/components/account/ProfileForm";
 import { EmailForm } from "@/components/account/EmailForm";
 import { PasswordForm } from "@/components/account/PasswordForm";
+import { CalendarSyncCard } from "@/components/account/CalendarSyncCard";
 import { DeleteAccountForm } from "@/components/account/DeleteAccountForm";
 
 function Section({
+  id,
   title,
   children,
   danger = false,
 }: {
+  id?: string;
   title: string;
   children: React.ReactNode;
   danger?: boolean;
 }) {
   return (
     <section
-      className={`rounded-2xl border p-6 shadow-sm shadow-stone-900/5 ${
+      id={id}
+      className={`scroll-mt-6 rounded-2xl border p-6 shadow-sm shadow-stone-900/5 ${
         danger ? "border-red-200 bg-red-50" : "border-stone-200 bg-white"
       }`}
     >
@@ -54,6 +59,10 @@ export default async function AccountPage() {
 
       <Section title="Password">
         <PasswordForm />
+      </Section>
+
+      <Section id="calendar-sync" title="Calendar sync">
+        <CalendarSyncCard feedUrl={`${siteConfig.url}/api/feed/${profile.calendar_feed_token}`} />
       </Section>
 
       <Section title="Danger zone" danger>

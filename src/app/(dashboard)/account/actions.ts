@@ -31,6 +31,16 @@ export async function updateProfile(
   return { success: "Profile updated." };
 }
 
+export async function regenerateCalendarFeedToken() {
+  await verifySession();
+  const supabase = await createClient();
+
+  const { error } = await supabase.rpc("regenerate_calendar_feed_token");
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/account");
+}
+
 export async function updateEmail(
   _prevState: AccountFormState,
   formData: FormData,

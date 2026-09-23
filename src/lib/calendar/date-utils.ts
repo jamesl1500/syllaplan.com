@@ -67,6 +67,16 @@ export function formatTime(time: string): string {
   return `${displayHour}:${String(minute).padStart(2, "0")} ${period}`;
 }
 
+/** Adds (or subtracts) minutes to a "HH:MM" time string, wrapping across midnight. */
+export function addMinutesToTime(time: string, minutes: number): string {
+  const [hourStr, minuteStr] = time.split(":");
+  const totalMinutes =
+    (((Number(hourStr) * 60 + Number(minuteStr) + minutes) % (24 * 60)) + 24 * 60) % (24 * 60);
+  const hh = Math.floor(totalMinutes / 60);
+  const mm = totalMinutes % 60;
+  return `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+}
+
 export const WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export const MONTH_LABELS = [
   "January", "February", "March", "April", "May", "June",
