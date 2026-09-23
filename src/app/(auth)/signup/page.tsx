@@ -4,6 +4,9 @@ import { SignupForm } from "@/components/auth/SignupForm";
 export const metadata: Metadata = {
   title: "Sign up",
   description: "Create a free Syllaplan account and turn your first syllabus into a calendar.",
+  alternates: {
+    canonical: "/signup",
+  },
 };
 
 export default function SignupPage() {
