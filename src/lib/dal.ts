@@ -27,7 +27,7 @@ export type ClassSummary = {
   created_at: string;
 };
 
-export async function getClasses(): Promise<ClassSummary[]> {
+export const getClasses = cache(async (): Promise<ClassSummary[]> => {
   await verifySession();
   const supabase = await createClient();
 
@@ -38,23 +38,26 @@ export async function getClasses(): Promise<ClassSummary[]> {
 
   if (error) throw error;
   return data ?? [];
-}
+});
 
-export async function getProfile() {
+export const getProfile = cache(async () => {
   const { user } = await verifySession();
   const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("profiles")
-    .select("display_name")
+    .select("display_name, calendar_feed_token")
     .eq("id", user.id)
     .single();
 
   if (error) throw error;
   return data;
-}
+});
 
-export async function getClassById(classId: string) {
+// Wrapped in React's cache() so that a class layout and its nested page
+// (e.g. class layout + calendar/tasks/review page) share one query per
+// request instead of issuing the same lookup twice.
+export const getClassById = cache(async (classId: string) => {
   await verifySession();
   const supabase = await createClient();
 
@@ -66,4 +69,4 @@ export async function getClassById(classId: string) {
 
   if (error) throw error;
   return data;
-}
+});

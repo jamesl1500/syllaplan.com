@@ -6,6 +6,9 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: `How ${siteConfig.name} collects, uses, and protects your data.`,
+  alternates: {
+    canonical: "/privacy",
+  },
 };
 
 export default function PrivacyPage() {
@@ -28,16 +31,16 @@ export default function PrivacyPage() {
 
           <Section title="How your syllabus is processed">
             <p>
-              When you upload a syllabus PDF, it's sent to Anthropic's Claude API so it can read the document
+              When you upload a syllabus PDF, it&apos;s sent to Anthropic&apos;s Claude API so it can read the document
               and extract your class schedule, dates, and assignments. Nothing is saved to your calendar
-              automatically — you review and confirm the extracted information yourself before it's stored.
+              automatically — you review and confirm the extracted information yourself before it&apos;s stored.
             </p>
           </Section>
 
           <Section title="Who can see your data">
             <p>
-              Your classes, calendar, tasks, and uploaded files are private to your account. We don't share
-              your data with other students, and we don't sell your data to anyone.
+              Your classes, calendar, tasks, and uploaded files are private to your account. We don&apos;t share
+              your data with other students, and we don&apos;t sell your data to anyone.
             </p>
           </Section>
 
@@ -51,7 +54,7 @@ export default function PrivacyPage() {
 
           <Section title="Cookies">
             <p>
-              We use a session cookie to keep you signed in. We don't use advertising or third-party tracking
+              We use a session cookie to keep you signed in. We don&apos;t use advertising or third-party tracking
               cookies.
             </p>
           </Section>
@@ -65,7 +68,7 @@ export default function PrivacyPage() {
 
           <Section title="Changes to this policy">
             <p>
-              If this policy changes in a way that affects how your data is handled, we'll update this page and
+              If this policy changes in a way that affects how your data is handled, we&apos;ll update this page and
               change the date above.
             </p>
           </Section>

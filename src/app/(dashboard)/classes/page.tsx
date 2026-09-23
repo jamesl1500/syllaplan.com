@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Plus, FileText } from "lucide-react";
+import { Plus, FileText, CalendarPlus } from "lucide-react";
 import { getClasses } from "@/lib/dal";
 import { createClient } from "@/lib/supabase/server";
 import { Button } from "@/components/ui/Button";
@@ -22,6 +22,16 @@ export default async function ClassesPage() {
           </Button>
         </Link>
       </div>
+
+      {activeClasses.length > 0 && (
+        <Link
+          href="/account#calendar-sync"
+          className="-mt-4 flex items-center gap-1.5 self-start text-sm text-stone-500 hover:text-clay-600"
+        >
+          <CalendarPlus className="h-3.5 w-3.5" />
+          Sync your schedule to Google, Apple, or Outlook Calendar
+        </Link>
+      )}
 
       {classes.length === 0 && (
         <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-stone-300 bg-white/50 py-16 text-center">

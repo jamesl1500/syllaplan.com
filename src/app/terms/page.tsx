@@ -6,6 +6,9 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: `The terms for using ${siteConfig.name}.`,
+  alternates: {
+    canonical: "/terms",
+  },
 };
 
 export default function TermsPage() {
@@ -20,14 +23,14 @@ export default function TermsPage() {
           <Section title="Using Syllaplan">
             <p>
               Syllaplan lets you upload a syllabus PDF and turns it into a calendar and task list for that
-              class. You're responsible for reviewing the extracted schedule, dates, and assignments before
-              confirming them — we don't guarantee the AI extraction is error-free.
+              class. You&apos;re responsible for reviewing the extracted schedule, dates, and assignments before
+              confirming them — we don&apos;t guarantee the AI extraction is error-free.
             </p>
           </Section>
 
           <Section title="Your account">
             <p>
-              You're responsible for keeping your login credentials secure and for the accuracy of the
+              You&apos;re responsible for keeping your login credentials secure and for the accuracy of the
               information you provide. You must be old enough to consent to our Privacy Policy in your
               jurisdiction to create an account.
             </p>
@@ -43,8 +46,8 @@ export default function TermsPage() {
 
           <Section title="Acceptable use">
             <p>
-              Don't use Syllaplan to upload content you don't have rights to, to abuse or overload the
-              service, or to attempt to access another user's data.
+              Don&apos;t use Syllaplan to upload content you don&apos;t have rights to, to abuse or overload the
+              service, or to attempt to access another user&apos;s data.
             </p>
           </Section>
 
@@ -58,7 +61,7 @@ export default function TermsPage() {
 
           <Section title="Limitation of liability">
             <p>
-              To the fullest extent permitted by law, Syllaplan and its operator aren't liable for any
+              To the fullest extent permitted by law, Syllaplan and its operator aren&apos;t liable for any
               indirect, incidental, or consequential damages arising from your use of the service, including
               missed deadlines or exams.
             </p>
